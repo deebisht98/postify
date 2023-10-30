@@ -18,6 +18,7 @@ const initialState: initialStateProps = {
 
 const page = () => {
   const router = useRouter();
+
   const [user, setUser] = useState<initialStateProps>(initialState);
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>): void {
