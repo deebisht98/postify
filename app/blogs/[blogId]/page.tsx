@@ -1,5 +1,5 @@
 import getBlogsById from "@/app/actions/getBlogsById";
-import BlogId from "@/app/components/blog/BlogId";
+import BlogForm from "@/app/components/blog/BlogForm";
 
 type blogParams = {
   blogId: string;
@@ -8,18 +8,5 @@ type blogParams = {
 export default async function page({ params }: { params: blogParams }) {
   const blog = await getBlogsById(params);
 
-  const date = blog?.createdAt;
-
-  return (
-    <div className="">
-      <div>
-        <BlogId
-          name={blog?.name}
-          description={blog?.description}
-          blogId={blog?.id}
-          imageSrc={blog?.imageSrc}
-        />
-      </div>
-    </div>
-  );
+  return <BlogForm blog={blog} />;
 }

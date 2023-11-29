@@ -8,12 +8,16 @@ export async function POST(request: Request) {
 
   const body = await request.json();
 
-  const blog = await prisma?.blog.create({
-    data: {
-      ...body,
-      authorId: currentUser.id,
-    },
-  });
-
-  return NextResponse.json(blog, { status: 201 });
+  try {
+    const blog = await prisma?.blog.create({
+      data: {
+        ...body,
+        authorId: currentUser.id,
+      },
+    });
+    return NextResponse.json(blog, { status: 201 });
+    console.log("blog", blog);
+  } catch (err) {
+    console.log(err);
+  }
 }

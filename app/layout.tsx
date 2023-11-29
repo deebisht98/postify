@@ -3,6 +3,8 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar/Navbar";
 import getCurrentUser from "./actions/getCurrentUser";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Roboto({ subsets: ["latin"], weight: "300" });
 
@@ -20,9 +22,21 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="flex flex-col">
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
         <Navbar currentUser={currentUser} />
-        <div className="w-full h-screen flex items-center justify-center">
+        <div className="w-full h-[90vh] flex items-center justify-center">
           {children}
         </div>
       </body>

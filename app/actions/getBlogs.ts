@@ -4,6 +4,9 @@ export default async function getBlogs() {
   try {
     const blogs = await prisma.blog.findMany({
       orderBy: { createdAt: "desc" },
+      include: {
+        author: true,
+      },
     });
 
     const safeBlogs = blogs.map((blog) => ({

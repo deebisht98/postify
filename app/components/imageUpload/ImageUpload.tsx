@@ -9,6 +9,7 @@ declare global {
 }
 
 interface ImageUploadProps {
+  id: string;
   onChange: (value: string) => void;
   value: string;
 }
@@ -32,24 +33,25 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
       {({ open }) => {
         return (
           <>
-            {value && (
-              <div className="w-full h-full mb-4">
+            {value ? (
+              <div className="w-full mb-4 relative h-full">
                 <Image
                   alt="upload"
-                  width={350}
-                  height={250}
-                  style={{ objectFit: "cover" }}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
                   src={value}
                 />
               </div>
+            ) : (
+              <div
+                onClick={() => open?.()}
+                className="w-full h-full mb-4 relative cursor-pointer hover:opacity-70 border-dashed border-2 flex flex-col justify-center items-center"
+              >
+                <TbPhotoPlus />
+                <div className="text-lg">Click to upload</div>
+              </div>
             )}
-            <div
-              onClick={() => open?.()}
-              className="relative cursor-pointer hover:opacity-70 border-dashed border-2 flex flex-col justify-center items-center h-full"
-            >
-              <TbPhotoPlus />
-              <div className="text-lg">Click to upload</div>
-            </div>
           </>
         );
       }}

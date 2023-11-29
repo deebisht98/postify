@@ -2,21 +2,47 @@
 
 import React from "react";
 
-type InputProps = {
+export type InputSize = "medium" | "large";
+export type InputType = "text" | "email" | "password";
+
+export type InputProps = {
   id: string;
-  type: string;
-  placeholder: string;
-  value: string;
   name: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  label: string;
+  placeholder: string;
+  type?: InputType;
+  className?: string;
+  errorMessage?: string;
+  required: boolean;
+  register: any;
 };
 
 const Input = (props: InputProps) => {
+  const {
+    id,
+    name,
+    label,
+    type = "text",
+    errorMessage,
+    register,
+    required = false,
+  } = props;
+
   return (
-    <input
-      className="p-2 my-2 rounded outline-0 border-1 border-gray-400 w-[350px]"
-      {...props}
-    />
+    <div className="flex flex-col mb-2 relative items-start w-full">
+      <label htmlFor={id} className="font-semibold">
+        {label}
+        {required && <span className="text-red-600 ml-1">*</span>}
+      </label>
+      <input
+        {...register(name)}
+        id={id}
+        name={name}
+        type={type}
+        className="p-2 my-2 rounded outline-0 border-2 border-gray-200 w-full"
+      />
+      <p className="text-red-600 text-xs">{errorMessage}</p>
+    </div>
   );
 };
 

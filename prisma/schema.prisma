@@ -11,21 +11,21 @@ datasource db {
 }
 
 model User {
-  id             String    @id @default(auto()) @map("_id") @db.ObjectId
-  name           String?
-  email          String?   @unique
-  emailVerified  DateTime?
-  image          String?
-  hashedPassword String?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
   blogs Blog[]
 }
 
 model Blog {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
+  title       String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   imageSrc    String

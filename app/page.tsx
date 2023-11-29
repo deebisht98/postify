@@ -8,7 +8,7 @@ export default async function Home() {
   const blogs = await getBlogs();
 
   return (
-    <div className="flex">
+    <div className="flex gap-4 h-full flex-wrap md:p-10 px-8">
       {blogs.map((blog) => (
         <SingleBlog key={blog.id} blog={blog} currentUser={currentUser} />
       ))}
